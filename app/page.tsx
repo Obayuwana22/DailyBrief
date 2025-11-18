@@ -1,5 +1,3 @@
-
-
 export default function Home() {
-  return <div>Welcome to the modern news app</div>;
+  return <div className="p-5">Welcome to the modern news app</div>;
 }
