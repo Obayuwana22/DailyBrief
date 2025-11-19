@@ -8,7 +8,7 @@ const AIAssistant = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   return (
-    <div className="sticky top-24 space-y-4">
+    <div className="sticky top-24 space-y-4 mt-8">
       {/* AI Assistant Card */}
       <div className="border border-border rounded-xl bg-card p-6 backdrop-blur-sm">
         {/* Header */}

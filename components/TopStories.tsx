@@ -64,7 +64,7 @@ const TopStories = () => {
       <div className="space-y-6">
         {Articles.map((article) => (
           //   <Link key={article.id} href={handleArticleClick(article.url)}>
-          <Link key={article.id} href="">
+          <Link key={article.id} href="#">
             <article className="group flex gap-6 p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-card/50 transition-all duration-300 cursor-pointer">
               {/* Image */}
               <div className="relative overflow-hidden rounded-lg shrink-0 w-40 h-40 hidden sm:block">
