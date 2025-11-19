@@ -59,7 +59,7 @@ const TopStories = () => {
 
   console.log("Hi")
   return (
-    <section>
+    <section className="py-8">
       <h2 className="text-2xl font-serif font-bold mb-6">Top Stories</h2>
       <div className="space-y-6">
         {Articles.map((article) => (
