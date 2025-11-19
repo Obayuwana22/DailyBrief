@@ -9,36 +9,36 @@
   --foreground: oklch(0.95 0 0); /* Almost white text */
   --card: oklch(0.12 0 0); /* Subtle dark cards */
   --card-foreground: oklch(0.95 0 0);
-  
+
   /* Accent - Vibrant cyan for AI/tech features */
   --primary: oklch(0.64 0.15 200); /* Modern cyan */
   --primary-foreground: oklch(0.08 0 0);
-  
+
   /* Secondary - Warm accent for highlights */
   --secondary: oklch(0.65 0.12 50); /* Warm amber */
   --secondary-foreground: oklch(0.08 0 0);
-  
+
   /* Muted - Subtle grays */
   --muted: oklch(0.28 0 0);
   --muted-foreground: oklch(0.65 0 0);
-  
+
   /* Accent - For interactive elements */
   --accent: oklch(0.64 0.15 200);
   --accent-foreground: oklch(0.08 0 0);
-  
+
   --destructive: oklch(0.6 0.2 30); /* Red accent */
   --destructive-foreground: oklch(0.95 0 0);
-  
+
   --border: oklch(0.18 0 0);
   --input: oklch(0.15 0 0);
   --ring: oklch(0.64 0.15 200);
-  
+
   --chart-1: oklch(0.64 0.15 200);
   --chart-2: oklch(0.65 0.12 50);
   --chart-3: oklch(0.55 0.15 280);
   --chart-4: oklch(0.6 0.2 30);
   --chart-5: oklch(0.7 0.1 100);
-  
+
   --radius: 0.75rem;
 }
 
@@ -63,9 +63,9 @@
 } */
 
 @theme inline {
-  --font-inter: 'Inter', 'Inter Fallback', system-ui;
-  --font-playfair-display: 'Playfair Display', serif;
-  --font-jetBrainsMono-mono: 'JetBrains Mono', monospace;
+  --font-sans: "Inter", "Inter Fallback", system-ui;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -101,7 +101,7 @@
   body {
     @apply bg-background text-foreground;
   }
-  
+
   /* Typography */
   h1 {
     @apply font-serif text-4xl font-bold tracking-tight;

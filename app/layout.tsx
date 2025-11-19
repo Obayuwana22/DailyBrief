@@ -11,17 +11,17 @@ import Navbar from "@/components/navigation/navbar";
 
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair-display",
+  variable: "--font-serif",
   subsets: ["latin"],
 });
 
 const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetBrainsMono-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 

@@ -2,9 +2,9 @@ import MobileNavigation from "./MobileNavigation";
 
 const Navbar = () => {
   return (
-    <header className="py-5 px-5 border border-b-border">
+    <header className="py-5 px-5 border-b border-b-border">
       <nav className="flex items-center justify-between">
-        <div className="flex items-center gap-2 font-playfair-display">
+        <div className="flex items-center gap-2 font-serif">
           <div className="bg-primary w-10 h-10 flex items-center justify-center rounded-full">
             <span className="text-primary-foreground font-bold text-xl">D</span>
           </div>
