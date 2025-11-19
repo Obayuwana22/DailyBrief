@@ -7,17 +7,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import NavLinks from "@/components/NavLinks";
 
 const MobileNavigation = () => {
   return (
-    <Sheet>
-      <SheetTrigger>
-        <Menu className="w-6 h-6 cursor-pointer md:hidden" />
-      </SheetTrigger>
-      <SheetContent>
-        <SheetTitle className="hidden">Navigation</SheetTitle>
-      </SheetContent>
-    </Sheet>
+    <div className="sm:hidden">
+      <Sheet>
+        <SheetTrigger>
+          <Menu className="w-6 h-6 cursor-pointer" />
+        </SheetTrigger>
+        <SheetContent>
+          <SheetTitle className="hidden">Navigation</SheetTitle>
+          <div className="">
+            <NavLinks />
+          </div>
+        </SheetContent>
+      </Sheet>
+    </div>
   );
 };
 
