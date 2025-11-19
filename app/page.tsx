@@ -1,16 +1,15 @@
 import Categories from "@/components/Categories";
 import Hero from "@/components/Hero";
+import TopStories from "@/components/TopStories";
 
 export default function Home() {
   return (
     <main className="px-4">
-      <div>
-        <Hero />
-      </div>
+      <Hero />
+      <Categories />
+      <TopStories />
 
-      <div>
-        <Categories />
-      </div>
+      <div></div>
     </main>
   );
 }
