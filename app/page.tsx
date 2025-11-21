@@ -17,8 +17,6 @@ export default function Home() {
           <AIAssistant />
         </aside>
       </div>
-
-      <Footer />
     </main>
   );
 }

@@ -10,14 +10,16 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-primary-foreground font-serif font-bold">
-                  N
-                </span>
+            <Link href="/">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center">
+                  <span className="text-primary-foreground font-serif font-bold">
+                    D
+                  </span>
+                </div>
+                <span className="font-serif font-bold">DailyBrief</span>
               </div>
-              <span className="font-serif font-bold">Nexus</span>
-            </div>
+            </Link>
             <p className="text-sm text-muted-foreground">
               Intelligent news powered by AI. Stay informed, always.
             </p>

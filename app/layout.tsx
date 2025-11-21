@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import {
-  Inter,
-  Geist,
-  Geist_Mono,
-  Playfair_Display,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/navbar";
-
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -43,6 +37,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

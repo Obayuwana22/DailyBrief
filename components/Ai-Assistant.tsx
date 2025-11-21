@@ -33,7 +33,7 @@ const AIAssistant = () => {
             <p className="text-muted-foreground">Summarize today&apos;s tech news</p>
           </div>
           <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 text-sm">
-            <p className="text-accent font-semibold mb-1">Nexus AI</p>
+            <p className="text-accent font-semibold mb-1">DailyBrief AI</p>
             <p className="text-muted-foreground">
               Today&apos;s tech headlines include quantum computing breakthroughs...
             </p>

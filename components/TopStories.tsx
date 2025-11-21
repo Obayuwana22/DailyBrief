@@ -12,7 +12,7 @@ const Articles = [
       "Latest advancements in quantum computing promise to revolutionize data processing capabilities.",
     category: "Technology",
     date: "2 hours ago",
-    image: "/quantum-computing.png",
+    image: "/images/tales.webp",
     source: "TechCrunch",
     url: "https://techcrunch.com/quantum-computing",
   },
@@ -23,7 +23,7 @@ const Articles = [
       "Stock indices hit new highs as investors respond optimistically to recent economic indicators.",
     category: "Business",
     date: "4 hours ago",
-    image: "/stock-market-trading.jpg",
+    image: "/images/tales.webp",
     source: "Bloomberg",
     url: "https://bloomberg.com/markets",
   },
@@ -34,7 +34,7 @@ const Articles = [
       "Researchers announce remarkable findings from recent deep-sea expedition revealing unknown marine life.",
     category: "Science",
     date: "6 hours ago",
-    image: "/deep-ocean-marine-life.jpg",
+    image: "/images/tales.webp",
     source: "Nature",
     url: "https://nature.com/research",
   },
@@ -45,7 +45,7 @@ const Articles = [
       "Artificial intelligence systems demonstrate unprecedented abilities across multiple sectors.",
     category: "Technology",
     date: "8 hours ago",
-    image: "/artificial-intelligence-technology.png",
+    image: "/images/tales.webp",
     source: "MIT Technology Review",
     url: "https://mittech.com/ai",
   },
@@ -57,7 +57,7 @@ const TopStories = () => {
   //     return `/article/${encodedUrl}`;
   //   };
 
-  console.log("Hi")
+  console.log("Hi");
   return (
     <section className="py-8">
       <h2 className="text-2xl font-serif font-bold mb-6">Top Stories</h2>

@@ -10,11 +10,11 @@ const Hero = () => {
       </div>
       <div className="relative max-w-7xl mx-auto py-8">
         <div className="max-w-3xl">
-          <div className="inline-block mb-4 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
+          {/* <div className="inline-block mb-4 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
             <span className="text-xs font-semibold text-primary">
               🚀 Powered by Advanced AI
             </span>
-          </div>
+          </div> */}
 
           <h1 className="mb-4 text-5xl md:text-6xl font-serif font-bold text-foreground">
             Stay Informed with{" "}
@@ -31,10 +31,10 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition">
+            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
               Start Reading
             </button>
-            <button className="px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition">
+            <button className="px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition cursor-pointer">
               Try Voice Assistant
             </button>
           </div>
