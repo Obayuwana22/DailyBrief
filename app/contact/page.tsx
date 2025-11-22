@@ -49,7 +49,7 @@ const ContactPage = () => {
                   placeholder="Your message..."
                 />
               </div>
-              <button className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:opacity-90 transition">
+              <button disabled className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:opacity-90 transition">
                 Send Message
               </button>
             </form>

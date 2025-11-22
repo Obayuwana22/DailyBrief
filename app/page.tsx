@@ -1,6 +1,5 @@
 import AIAssistant from "@/components/Ai-Assistant";
 import Categories from "@/components/Categories";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import TopStories from "@/components/TopStories";
 
