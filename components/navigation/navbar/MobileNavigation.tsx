@@ -9,6 +9,10 @@ import {
 import Link from "next/link";
 
 const navLinks = [
+   {
+    label: "home",
+    route: "/",
+  },
   {
     label: "trending",
     route: "/trending",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   Heart,
@@ -13,45 +13,83 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import placeholderImage from "../../../public/images/tales.webp";
 
-interface ArticleDetail {
-  source: { id: string; name: string };
-  author: string | null;
+interface ApiArticle {
+  author?: string;
+  category?: string;
+  description?: string;
+  image?: string;
+  published_at?: string;
+  source?: string;
   title: string;
-  description: string;
   url: string;
-  urlToImage: string | null;
-  publishedAt: string;
-  content: string;
 }
-
 export default function ArticlePage() {
   const params = useParams();
-  const [article, setArticle] = useState<ArticleDetail | null>(null);
+  // const [article, setArticle] = useState<ApiArticle | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
+
+  // useEffect(() => {
+  //   const fetchArticle = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const decodedSlug = decodeURIComponent(params.slug as string);
+  //       const response = await fetch(
+  //         `/api/article?url=${encodeURIComponent(decodedSlug)}`
+  //       );
+  //       if (!response.ok) throw new Error("Failed to fetch article");
+  //       const data = await response.json();
+  //       setArticle(data);
+  //     } catch (err) {
+  //       setError("Failed to load article. Please try again.");
+  //       console.error("[v0] Article fetch error:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   if (params.slug) fetchArticle();
+  // }, [params.slug]);
+
+  const searchParams = useSearchParams();
+  const urlParam = searchParams.get("url");
+
+  const [article, setArticle] = useState<ApiArticle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchArticle = async () => {
+    const loadArticle = async () => {
       try {
         setLoading(true);
-        const decodedSlug = decodeURIComponent(params.slug as string);
-        const response = await fetch(
-          `/api/article?url=${encodeURIComponent(decodedSlug)}`
-        );
-        if (!response.ok) throw new Error("Failed to fetch article");
-        const data = await response.json();
+        let targetUrl = urlParam;
+
+        if (!targetUrl && params.slug) {
+          targetUrl = decodeURIComponent(params.slug as string);
+        }
+
+        if (!targetUrl) {
+          setError("No article URL provided");
+          setLoading(false);
+          return;
+        }
+
+        const res = await fetch(`/api/article?url=${encodeURIComponent(targetUrl)}`);
+        if (!res.ok) throw new Error("Failed to fetch article");
+        const data = await res.json();
         setArticle(data);
       } catch (err) {
+        console.error(err);
         setError("Failed to load article. Please try again.");
-        console.error("[v0] Article fetch error:", err);
       } finally {
         setLoading(false);
       }
     };
 
-    if (params.slug) fetchArticle();
-  }, [params.slug]);
+    loadArticle();
+  }, [urlParam, params.slug]);
 
   return (
     <main className="min-h-screen bg-background">
@@ -86,7 +124,7 @@ export default function ArticlePage() {
             <div className="space-y-4">
               <div className="flex gap-2 flex-wrap">
                 <span className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold">
-                  {article.source.name}
+                  {article.source}
                 </span>
               </div>
 
@@ -113,21 +151,26 @@ export default function ArticlePage() {
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
-                    {new Date(article.publishedAt).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
+                    {article.published_at
+                      ? new Date(article.published_at).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          }
+                        )
+                      : "Unknown date"}
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Feature Image */}
-            {article.urlToImage && (
+            {article.image && (
               <div className="relative overflow-hidden rounded-xl h-96 bg-card border border-border">
                 <Image
-                  src={article.urlToImage || "/placeholder.svg"}
+                  src={article.image || placeholderImage}
                   width={23}
                   height={23}
                   alt={article.title}
@@ -137,7 +180,7 @@ export default function ArticlePage() {
             )}
 
             {/* Content */}
-            <div className="prose prose-invert max-w-none">
+            {/* <div className="prose prose-invert max-w-none">
               {article.content && (
                 <div className="text-base leading-relaxed text-foreground/90 space-y-4">
                   {article.content.split("\n").map(
@@ -150,7 +193,7 @@ export default function ArticlePage() {
                   )}
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Read Full Article Link */}
             <div className="border-t border-border pt-6">

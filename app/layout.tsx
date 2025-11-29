@@ -3,6 +3,8 @@ import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/navbar";
 import Footer from "@/components/Footer";
+import QueryProvider from "@/components/QueryProvider";
+import { NewsProvider } from "@/Context/NewsProvider";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -36,7 +38,9 @@ export default function RootLayout({
         className={`${inter.className} ${playfairDisplay.variable} ${jetBrainsMono.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        <NewsProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </NewsProvider>
         <Footer />
       </body>
     </html>
