@@ -39,8 +39,8 @@ const TopStories = () => {
         </div>
       )}
 
-      {articles && (
-        <div className="space-y-6">
+      {/* {articles && ( */}
+        <div className="flex flex-col gap-3">
           {articles?.map((article, index) => (
             <Link key={index} href={handleArticleClick(article.url)}>
               <article className="group flex gap-6 p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-card/50 transition-all duration-300 cursor-pointer">
@@ -62,7 +62,7 @@ const TopStories = () => {
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded font-semibold">
-                        {article.category}
+                        {article.category || "unknown"}
                       </span>
                       <span className="text-xs text-muted-foreground">
                         {article.published_at}
@@ -78,9 +78,9 @@ const TopStories = () => {
 
                   {/* Footer */}
                   <div className="flex items-center justify-between mt-4">
-                    <span className="text-xs text-muted-foreground font-semibold">
+                    {/* <span className="text-xs text-muted-foreground font-semibold truncate max-w-[150px] block">
                       {article.source}
-                    </span>
+                    </span> */}
                     <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button className="p-2 hover:bg-primary/10 rounded-lg transition">
                         <Heart className="w-4 h-4 text-muted-foreground hover:text-destructive" />
@@ -98,7 +98,7 @@ const TopStories = () => {
             </Link>
           ))}
         </div>
-      )}
+      {/* )} */}
     </section>
   );
 };

@@ -8,7 +8,7 @@ export default function Home() {
     <main className="px-4">
       <Hero />
       <Categories />
-      <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4 py-12">
+      <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto py-12">
         <div className="lg:col-span-2">
           <TopStories />
         </div>

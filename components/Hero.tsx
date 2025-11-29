@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
@@ -31,10 +32,12 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
+         <Link href="/trending">
+              <button className="w-full px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
               Start Reading
             </button>
-            <button className="px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition cursor-pointer">
+         </Link>
+            <button className=" px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition cursor-pointer">
               Try Voice Assistant
             </button>
           </div>
