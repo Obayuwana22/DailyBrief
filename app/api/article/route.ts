@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const url = searchParams.get("url");
-    if (!url) {
+    if (!url || url === "undefined") {
       return NextResponse.json({ error: "Missing URL" }, { status: 400 });
     }
 

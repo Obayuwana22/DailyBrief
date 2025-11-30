@@ -14,17 +14,22 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import placeholderImage from "../../../public/images/tales.webp";
+import FullArticle from "@/components/FullArticle";
 
 interface ApiArticle {
   author?: string;
   category?: string;
   description?: string;
-  image?: string;
-  published_at?: string;
+  image?: {
+    img: string;
+  };
+  publishedAt?: string; // Changed from published_at to match FullArticle usage
   source?: string;
   title: string;
-  url: string;
+  content?: Record<string, string>; // Changed from content_api to match FullArticle usage
+  content_api?: string; // Keep for compatibility if needed
 }
+
 export default function ArticlePage() {
   const params = useParams();
   // const [article, setArticle] = useState<ApiArticle | null>(null);
@@ -70,7 +75,7 @@ export default function ArticlePage() {
           targetUrl = decodeURIComponent(params.slug as string);
         }
 
-        if (!targetUrl) {
+        if (!targetUrl || targetUrl === "undefined") {
           setError("No article URL provided");
           setLoading(false);
           return;
@@ -119,111 +124,112 @@ export default function ArticlePage() {
         )}
 
         {article && (
-          <article className="space-y-6">
-            {/* Header Section */}
-            <div className="space-y-4">
-              <div className="flex gap-2 flex-wrap">
-                <span className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold">
-                  {article.source}
-                </span>
-              </div>
+          <FullArticle data={article} />
+          // <article className="space-y-6">
+          //   {/* Header Section */}
+          //   <div className="space-y-4">
+          //     <div className="flex gap-2 flex-wrap">
+          //       <span className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full font-semibold">
+          //         {article.source}
+          //       </span>
+          //     </div>
 
-              <h1 className="text-4xl font-serif font-bold leading-tight">
-                {article.title}
-              </h1>
+          //     <h1 className="text-4xl font-serif font-bold leading-tight">
+          //       {article.title}
+          //     </h1>
 
-              {article.description && (
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  {article.description}
-                </p>
-              )}
+          //     {article.description && (
+          //       <p className="text-xl text-muted-foreground leading-relaxed">
+          //         {article.description}
+          //       </p>
+          //     )}
 
-              {/* Article Metadata */}
-              <div className="flex flex-wrap gap-6 py-4 border-y border-border">
-                {article.author && (
-                  <div className="flex items-center gap-2">
-                    <User className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">
-                      {article.author}
-                    </span>
-                  </div>
-                )}
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">
-                    {article.published_at
-                      ? new Date(article.published_at).toLocaleDateString(
-                          "en-US",
-                          {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                          }
-                        )
-                      : "Unknown date"}
-                  </span>
-                </div>
-              </div>
-            </div>
+          //     {/* Article Metadata */}
+          //     <div className="flex flex-wrap gap-6 py-4 border-y border-border">
+          //       {article.author && (
+          //         <div className="flex items-center gap-2">
+          //           <User className="w-4 h-4 text-muted-foreground" />
+          //           <span className="text-sm text-muted-foreground">
+          //             {article.author}
+          //           </span>
+          //         </div>
+          //       )}
+          //       <div className="flex items-center gap-2">
+          //         <Calendar className="w-4 h-4 text-muted-foreground" />
+          //         <span className="text-sm text-muted-foreground">
+          //           {article.published_at
+          //             ? new Date(article.published_at).toLocaleDateString(
+          //                 "en-US",
+          //                 {
+          //                   month: "long",
+          //                   day: "numeric",
+          //                   year: "numeric",
+          //                 }
+          //               )
+          //             : "Unknown date"}
+          //         </span>
+          //       </div>
+          //     </div>
+          //   </div>
 
-            {/* Feature Image */}
-            {article.image && (
-              <div className="relative overflow-hidden rounded-xl h-96 bg-card border border-border">
-                <Image
-                  src={article.image || placeholderImage}
-                  width={23}
-                  height={23}
-                  alt={article.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
+          //   {/* Feature Image */}
+          //   {article.image && (
+          //     <div className="relative overflow-hidden rounded-xl h-96 bg-card border border-border">
+          //       <Image
+          //         src={article.image?.img || placeholderImage}
+          //         width={23}
+          //         height={23}
+          //         alt={article.title}
+          //         className="w-full h-full object-cover"
+          //       />
+          //     </div>
+          //   )}
 
-            {/* Content */}
-            {/* <div className="prose prose-invert max-w-none">
-              {article.content && (
-                <div className="text-base leading-relaxed text-foreground/90 space-y-4">
-                  {article.content.split("\n").map(
-                    (paragraph, idx) =>
-                      paragraph.trim() && (
-                        <p key={idx} className="text-base leading-relaxed">
-                          {paragraph}
-                        </p>
-                      )
-                  )}
-                </div>
-              )}
-            </div> */}
+          //   {/* Content */}
+          //   <div className="prose prose-invert max-w-none">
+          //     {article.content_api && (
+          //       <div className="text-base leading-relaxed text-foreground/90 space-y-4">
+          //         {/* {article.content.split("\n").map(
+          //           (paragraph, idx) =>
+          //             paragraph.trim() && (
+          //               <p key={idx} className="text-base leading-relaxed">
+          //                 {paragraph}
+          //               </p>
+          //             )
+          //         )} */}
+          //       </div>
+          //     )}
+          //   </div>
 
-            {/* Read Full Article Link */}
-            <div className="border-t border-border pt-6">
-              <a
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition font-semibold"
-              >
-                Read Full Article
-                <Globe className="w-4 h-4" />
-              </a>
-            </div>
+          //   {/* Read Full Article Link */}
+          //   <div className="border-t border-border pt-6">
+          //     <a
+          //       href={article.source}
+          //       target="_blank"
+          //       rel="noopener noreferrer"
+          //       className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition font-semibold"
+          //     >
+          //       Read Full Article
+          //       <Globe className="w-4 h-4" />
+          //     </a>
+          //   </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-3 py-6 border-t border-border">
-              <button className="flex-1 py-3 px-4 border border-border rounded-lg hover:bg-card transition flex items-center justify-center gap-2 font-semibold">
-                <Heart className="w-5 h-5" />
-                Save
-              </button>
-              <button className="flex-1 py-3 px-4 border border-border rounded-lg hover:bg-card transition flex items-center justify-center gap-2 font-semibold">
-                <Bookmark className="w-5 h-5" />
-                Bookmark
-              </button>
-              <button className="flex-1 py-3 px-4 border border-border rounded-lg hover:bg-card transition flex items-center justify-center gap-2 font-semibold">
-                <Share2 className="w-5 h-5" />
-                Share
-              </button>
-            </div>
-          </article>
+          //   {/* Action Buttons */}
+          //   <div className="flex gap-3 py-6 border-t border-border">
+          //     <button className="flex-1 py-3 px-4 border border-border rounded-lg hover:bg-card transition flex items-center justify-center gap-2 font-semibold">
+          //       <Heart className="w-5 h-5" />
+          //       Save
+          //     </button>
+          //     <button className="flex-1 py-3 px-4 border border-border rounded-lg hover:bg-card transition flex items-center justify-center gap-2 font-semibold">
+          //       <Bookmark className="w-5 h-5" />
+          //       Bookmark
+          //     </button>
+          //     <button className="flex-1 py-3 px-4 border border-border rounded-lg hover:bg-card transition flex items-center justify-center gap-2 font-semibold">
+          //       <Share2 className="w-5 h-5" />
+          //       Share
+          //     </button>
+          //   </div>
+          // </article>
         )}
       </div>
     </main>

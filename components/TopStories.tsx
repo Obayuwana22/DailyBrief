@@ -6,16 +6,34 @@ import Link from "next/link";
 import placeholderImage from "../public/images/tales.webp";
 import { useNewsContext } from "@/Context/NewsProvider";
 import { useRouter } from "next/navigation";
+import { useMemo} from "react";
+
+const random = Math.random()
 
 const TopStories = () => {
   const router = useRouter();
-  const handleArticleClick = (url: string) => {
+  const handleArticleClick = (url: string | undefined) => {
+    if (!url) return "#";
     const encodedUrl = encodeURIComponent(url);
     return `/article/${encodedUrl}`;
   };
 
   const { feed, loading, error } = useNewsContext();
-  const articles = feed?.slice(0, 4);
+  
+  // Compute random articles using useMemo to avoid cascading renders
+  const randomArticles = useMemo(() => {
+    if (!feed || feed.length === 0) return [];
+
+    // Shuffle function (Fisher-Yates)
+    const shuffled = [...feed];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(random * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled.slice(0, 4);
+  }, [feed]);
+
 
   // if(loading) return <p>Loading feed...</p>
   // if(error) return <p>{error}</p>
@@ -41,8 +59,8 @@ const TopStories = () => {
 
       {/* {articles && ( */}
         <div className="flex flex-col gap-3">
-          {articles?.map((article, index) => (
-            <Link key={index} href={handleArticleClick(article.url)}>
+          {randomArticles?.map((article, index) => (
+            <Link key={index} href={handleArticleClick(article.content_api)}>
               <article className="group flex gap-6 p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-card/50 transition-all duration-300 cursor-pointer">
                 {/* Image */}
                 <div className="relative overflow-hidden rounded-lg shrink-0 w-40 h-40 hidden sm:block">

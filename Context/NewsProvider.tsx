@@ -23,7 +23,7 @@ interface ApiArticle {
   published_at?: string;
   source?: string;
   title: string;
-  url: string;
+  content_api?: string;
 }
 
 interface ApiResponse {
